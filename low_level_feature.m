@@ -5,12 +5,14 @@ function traclet = low_level_feature(im, bb)
                       's',{}, ...
                       'bb',{}, ...
                       'im',{}, ...
+                      'conf',{}, ...
                       'id',{});
     for i=1:nb
         traclet(i).bb = bb(i,:);
+        traclet(i).conf = bb(i,5)/100;
         traclet(i).x = bb(i,2) + 0.5*bb(i,4);
         traclet(i).y = bb(i,1) + 0.5*bb(i,3);
         traclet(i).s = bb(i,3)*bb(i,4);
-        traclet(i).im = im(bb(i,2):bb(i,2)+bb(i,4), bb(i,1):bb(i,1)+bb(i,3), :);
+        traclet(i).im = im(bb(i,2):min(bb(i,2)+bb(i,4),end), bb(i,1):min(bb(i,1)+bb(i,3),end), :);
     end
 end

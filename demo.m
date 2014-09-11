@@ -12,7 +12,7 @@ function demo()
 %     detector = acfModify(detector,'cascThr',-1,'cascCal',0);
     detector = acfModify(detector,'rescale',0.5);   
  
-    pre_tracs = [];
+    pre_trs = [];
     for i = 1:nfiles
         im = imread(strcat(dataDir, pics(i).name));
         
@@ -21,9 +21,10 @@ function demo()
 %         bi = nms(round(bb), 0.1);
 %         bb = bb(bi,:);
         bb(bb(:,5)<15,:) = [];
-        cur_tracs = low_level_feature(im, bb);
-        show_tracklet(im, cur_tracs);
-    
+        cur_trs = low_level_feature(im, bb);
+        cur_trs = low_level_associations(pre_trs, cur_trs);
+        pre_trs = remove_useless(cur_trs);
+        show_tracklet(im, cur_trs);
+        DEBUG=1;
     end    
-    debug=1;
 end
