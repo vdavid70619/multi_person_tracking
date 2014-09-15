@@ -5,8 +5,8 @@ function cur_with_ids = low_level_associations(pre, cur)
             cur(k).id = k;
         end
     else
-        a_pos = 1;
-        a_size = 1;
+        a_pos = 0.1;
+        a_size = 0.1;
         a_appr = 1;
         a_conf = 1;
         b_posx = 10;
